@@ -1,19 +1,24 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+
+import SingUp from './src/pages/SingUp/SingUp';
+import LoginPage from './src/pages/LoginPage/LoginPage';
+import ForgotPassword from './src/pages/ForgotPassword/ForgotPassword';
+
+const Stack = createNativeStackNavigator();
 
 function App() {
   return (
-    <View style={styles.container}>
-      <Text>Oii</Text>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="LoginPage" component={LoginPage} />
+        <Stack.Screen name="SingUp" component={SingUp} />
+        <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
 export default App;
