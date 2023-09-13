@@ -6,21 +6,7 @@ function InputLogin() {
     <View style={styles.container}>
       <View style={styles.containerInput}>
         <Text style={styles.text}>Email</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="compass@compass.com"
-          placeholderTextColor="#9B9B9B"
-        />
-      </View>
-
-      <View style={styles.containerInput}>
-        <Text style={styles.text}>Senha</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Password"
-          placeholderTextColor="#9B9B9B"
-          maxLength={4}
-        />
+        <TextInput style={styles.input} />
       </View>
     </View>
   );
@@ -30,7 +16,7 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 62,
+    marginTop: 20,
   },
   containerInput: {
     backgroundColor: '#FFF',
@@ -56,3 +42,14 @@ const styles = StyleSheet.create({
 });
 
 export default InputLogin;
+
+/* <View style={styles.containerInput}>
+        <Text style={styles.text}>Senha</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Password"
+          placeholderTextColor="#9B9B9B"
+          maxLength={4}
+          secureTextEntry={true}
+        />
+      </View>*/

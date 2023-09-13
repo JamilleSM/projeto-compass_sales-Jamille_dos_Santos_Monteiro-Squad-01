@@ -6,11 +6,11 @@ interface Handle {
   onpress: () => void;
 }
 
-const ButtonLogin: React.FC<Handle> = ({onpress, children}) => {
+const Password: React.FC<Handle> = ({onpress, children}) => {
   return (
-    <View style={styles.container}>
-      <TouchableOpacity onPress={onpress} style={styles.button}>
-        <Text style={styles.textButton}>{children}</Text>
+    <View>
+      <TouchableOpacity onPress={onpress}>
+        <Text style={styles.text}>{children}</Text>
       </TouchableOpacity>
     </View>
   );
@@ -22,21 +22,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginTop: 32,
   },
-  textButton: {
-    color: '#FFF',
+  text: {
+    color: '#000',
     height: 20,
     fontSize: 14,
     fontFamily: 'Roboto',
     fontWeight: '600',
   },
-  button: {
-    width: 343,
-    height: 48,
-    backgroundColor: '#DB3022',
-    borderRadius: 25,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
 });
 
-export default ButtonLogin;
+export default Password;
