@@ -1,10 +1,27 @@
-import React from 'react';
+import axios from 'axios';
+import React, {useContext, useEffect, useState} from 'react';
 import {StyleSheet, View, Text} from 'react-native';
+import {AuthContext} from '../../context/Context';
 
 function Home() {
+  const [message, setMessage] = useState('');
+  const authCtx = useContext(AuthContext);
+  const token = authCtx.token;
+
+  useEffect(() => {
+    axios
+      .get(
+        'https://compasssales-95eda-default-rtdb.firebaseio.com/message/.json?auth=' +
+          token,
+      )
+      .then(response => {
+        setMessage(response.data);
+      });
+  }, [token]);
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Bem Vindo!!!</Text>
+      <Text>{message}</Text>
     </View>
   );
 }

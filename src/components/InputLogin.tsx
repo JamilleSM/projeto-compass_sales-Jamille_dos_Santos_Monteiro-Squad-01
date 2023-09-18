@@ -1,22 +1,50 @@
-import React from 'react';
-import {StyleSheet, Text, View, TextInput} from 'react-native';
+import React, {ReactNode} from 'react';
+import {StyleSheet, Text, View, TextInput, TextInputProps} from 'react-native';
 
-function InputLogin() {
+interface InputText {
+  children: ReactNode;
+  placeholder: string;
+  keyboardType?: TextInputProps['keyboardType'];
+  secure?: boolean;
+  onUpdateValue: (text: string) => void;
+  value?: string;
+  isInvalid?: boolean;
+}
+
+const InputLogin: React.FC<InputText> = ({
+  children,
+  placeholder,
+  keyboardType,
+  secure,
+  onUpdateValue,
+  value,
+  isInvalid,
+}) => {
   return (
     <View style={styles.container}>
-      <View style={styles.containerInput}>
-        <Text style={styles.text}>Email</Text>
-        <TextInput style={styles.input} />
+      <View style={[styles.containerInput, isInvalid && styles.inputInvalid]}>
+        <Text style={[styles.textInput, isInvalid && styles.nameInvalid]}>
+          {children}
+        </Text>
+        <TextInput
+          style={styles.input}
+          placeholderTextColor="#9B9B9B"
+          secureTextEntry={secure}
+          placeholder={placeholder}
+          autoCapitalize="none"
+          keyboardType={keyboardType}
+          onChangeText={onUpdateValue}
+          value={value}
+        />
       </View>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 20,
   },
   containerInput: {
     backgroundColor: '#FFF',
@@ -30,7 +58,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     color: '#000',
   },
-  text: {
+  textInput: {
     color: '#9B9B9B',
     height: 19,
     fontSize: 11,
@@ -39,17 +67,13 @@ const styles = StyleSheet.create({
     left: 10,
     top: 6,
   },
+  inputInvalid: {
+    borderColor: '#DB3022',
+    borderWidth: 1,
+  },
+  nameInvalid: {
+    color: '#DB3022',
+  },
 });
 
 export default InputLogin;
-
-/* <View style={styles.containerInput}>
-        <Text style={styles.text}>Senha</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Password"
-          placeholderTextColor="#9B9B9B"
-          maxLength={4}
-          secureTextEntry={true}
-        />
-      </View>*/

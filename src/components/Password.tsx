@@ -8,7 +8,7 @@ interface Handle {
 
 const Password: React.FC<Handle> = ({onpress, children}) => {
   return (
-    <View>
+    <View style={styles.container}>
       <TouchableOpacity onPress={onpress}>
         <Text style={styles.text}>{children}</Text>
       </TouchableOpacity>
@@ -18,9 +18,7 @@ const Password: React.FC<Handle> = ({onpress, children}) => {
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 32,
   },
   text: {
     color: '#000',
@@ -28,6 +26,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: 'Roboto',
     fontWeight: '600',
+    marginTop: 16,
   },
 });
 

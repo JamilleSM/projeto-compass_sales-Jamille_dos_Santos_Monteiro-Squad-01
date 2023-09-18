@@ -1,11 +1,11 @@
 import React from 'react';
 import {StyleSheet, TouchableOpacity, Text, Image, View} from 'react-native';
-import Imgoogle from '../img/google.png';
+import Imgoogle from '../assets/google.png';
 
 const ButtonIcon: React.FC = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Or sign up with social account</Text>
+      <Text style={styles.text}>Or with social account</Text>
 
       <View style={styles.containerButton}>
         <TouchableOpacity style={styles.button}>
@@ -14,7 +14,7 @@ const ButtonIcon: React.FC = () => {
         <TouchableOpacity style={styles.button}>
           <Image
             style={styles.imgButton}
-            source={require('../img/facebook.png')}
+            source={require('../assets/facebook.png')}
           />
         </TouchableOpacity>
       </View>
