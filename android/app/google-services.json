@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "894443237919",
+    "firebase_url": "https://compasssales-95eda-default-rtdb.firebaseio.com",
+    "project_id": "compasssales-95eda",
+    "storage_bucket": "compasssales-95eda.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:894443237919:android:ddc803861346b5a5b45b2a",
+        "android_client_info": {
+          "package_name": "com.compass_sales"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7BK4M17guMotRhwZLzukq2_jQVfNQ_E4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

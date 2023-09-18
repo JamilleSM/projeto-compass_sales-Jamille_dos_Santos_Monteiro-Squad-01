@@ -1,25 +1,80 @@
-import React from 'react';
-
+import React, {useContext} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import SingUp from './src/pages/SingUp/SignUp';
 import LoginPage from './src/pages/LoginPage/LoginPage';
-import ForgotPassword from './src/pages/ForgotPassword/ForgotPassword';
+import SignUp from './src/pages/SingUp/SignUp';
 import Home from './src/pages/Home/Home';
+import ForgotPassword from './src/pages/ForgotPassword/ForgotPassword';
+import AuthContextProvider, {AuthContext} from './src/context/Context';
+import ButtonLogout from './src/components/ButtonLogout';
 
 const Stack = createNativeStackNavigator();
 
-function App() {
+function AuthStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        options={{headerShown: false}}
+        name="SignUp"
+        component={SignUp}
+      />
+      <Stack.Screen
+        options={{headerShown: false}}
+        name="LoginPage"
+        component={LoginPage}
+      />
+      <Stack.Screen
+        options={{headerShown: false}}
+        name="ForgotPassword"
+        component={ForgotPassword}
+      />
+    </Stack.Navigator>
+  );
+}
+
+function StackNavigation() {
+  const authContext = useContext(AuthContext);
+
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="SignUp">
-        <Stack.Screen name="SignUp" component={SingUp} />
-        <Stack.Screen name="LoginPage" component={LoginPage} />
-        <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
-        <Stack.Screen name="Home" component={Home} />
-      </Stack.Navigator>
+      {!authContext.isAuthenticated && <AuthStack />}
+      {authContext.isAuthenticated && <AuthenticatedStack />}
     </NavigationContainer>
+  );
+}
+
+function AuthenticatedStack() {
+  const authCtx = useContext(AuthContext);
+
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        options={{
+          title: '',
+          headerStyle: {backgroundColor: '#EEE'},
+          headerRight: () => <ButtonLogout onpress={authCtx.logout} />,
+        }}
+        name="Home"
+        component={Home}
+      />
+    </Stack.Navigator>
+  );
+}
+
+/* <ButtonIcon
+              icon="exit"
+              color={tintColor}
+              size={24}
+              onPress={authCtx.logout}/>*/
+
+function App() {
+  return (
+    <>
+      <AuthContextProvider>
+        <StackNavigation />
+      </AuthContextProvider>
+    </>
   );
 }
 

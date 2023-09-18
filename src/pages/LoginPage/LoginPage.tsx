@@ -1,27 +1,45 @@
-import React from 'react';
-import {StyleSheet, View, Text} from 'react-native';
-
-import InputLogin from '../../components/InputLogin';
-import ButtonLogin from '../../components/ButtonLogin';
+import React, {useContext, useState} from 'react';
+import {StyleSheet, View, Text, Alert} from 'react-native';
 import ButtonIcon from '../../components/ButtonIcon';
-
-import {useNavigation} from '@react-navigation/native';
-
-import Password from '../../components/Password';
+import AuthContent from '../../Auth/AuthContent';
+import Loading from '../../components/Loading';
+import {loginUser} from '../../context/Auth';
+import {AuthContext} from '../../context/Context';
+import Title from '../../components/Title';
 
 const LoginPage: React.FC = () => {
-  const navigation: any = useNavigation();
+  const [authenticate, setAuthenticate] = useState(false);
+  const authContext = useContext(AuthContext);
+
+  async function signInHandler({
+    email,
+    password,
+  }: {
+    email: string;
+    password: string;
+  }) {
+    setAuthenticate(true);
+    try {
+      const token = await loginUser(email, password);
+      authContext.authenticate(token);
+    } catch (error) {
+      Alert.alert(
+        'Authentication falided',
+        'Cloud not log you in. Please check your credentials!',
+      );
+    }
+    setAuthenticate(false);
+  }
+
+  if (authenticate) {
+    return <Loading message="Logging you in..." />;
+  }
+
   return (
     <View style={styles.container}>
+      <Title>Login</Title>
       <Text>Login</Text>
-      <InputLogin />
-      <InputLogin />
-      <Password onpress={() => navigation.navigate('ForgotPassword')}>
-        Forgot your password?
-      </Password>
-      <ButtonLogin onpress={() => navigation.navigate('Home')}>
-        Login
-      </ButtonLogin>
+      <AuthContent isLogin={true} onAuthenticate={signInHandler} />
       <ButtonIcon />
     </View>
   );
@@ -31,10 +49,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F9F9F9',
+    alignItems: 'center',
   },
   text: {
     top: 106,
-    left: 14,
     fontSize: 34,
     fontFamily: 'Roboto',
     fontWeight: '700',
