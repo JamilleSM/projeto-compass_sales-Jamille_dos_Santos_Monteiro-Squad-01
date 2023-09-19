@@ -1,5 +1,5 @@
 import React, {ReactNode} from 'react';
-import {StyleSheet, TouchableOpacity, View, Text} from 'react-native';
+import {StyleSheet, TouchableOpacity, View, Text, Image} from 'react-native';
 
 interface Handle {
   children: ReactNode;
@@ -8,25 +8,30 @@ interface Handle {
 
 const Password: React.FC<Handle> = ({onpress, children}) => {
   return (
-    <View style={styles.container}>
-      <TouchableOpacity onPress={onpress}>
+    <TouchableOpacity onPress={onpress}>
+      <View style={styles.container}>
         <Text style={styles.text}>{children}</Text>
-      </TouchableOpacity>
-    </View>
+        <Image source={require('../assets/vector.png')} style={styles.icon} />
+      </View>
+    </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
+    flexDirection: 'row',
+    alignItems: 'center',
     justifyContent: 'center',
+    marginTop: 12,
   },
   text: {
     color: '#000',
-    height: 20,
     fontSize: 14,
     fontFamily: 'Roboto',
     fontWeight: '600',
-    marginTop: 16,
+  },
+  icon: {
+    marginLeft: 8,
   },
 });
 

@@ -1,4 +1,5 @@
 import React, {useContext} from 'react';
+import {StatusBar} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
@@ -62,15 +63,10 @@ function AuthenticatedStack() {
   );
 }
 
-/* <ButtonIcon
-              icon="exit"
-              color={tintColor}
-              size={24}
-              onPress={authCtx.logout}/>*/
-
 function App() {
   return (
     <>
+      <StatusBar backgroundColor="#F9F9F9" barStyle="dark-content" />
       <AuthContextProvider>
         <StackNavigation />
       </AuthContextProvider>
