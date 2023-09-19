@@ -8,7 +8,6 @@ O aplicativo pode criar um usuário, autenticá-lo, realizar a recuperação de 
 
 ## Capturas de Tela
 
-Inclua algumas capturas de tela do seu aplicativo para dar aos usuários uma ideia visual do que esperar.
 
 ![Captura de Tela 1 -> SignUp](./src/assets/signup.jpeg)
 ![Captura de Tela 2 -> Login](./src/assets/login.jpeg)
