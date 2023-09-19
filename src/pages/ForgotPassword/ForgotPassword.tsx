@@ -4,12 +4,15 @@ import {StyleSheet, View, Text, Alert} from 'react-native';
 import InputLogin from '../../components/InputLogin';
 import ButtonLogin from '../../components/ButtonLogin';
 import Title from '../../components/Title';
+import Password from '../../components/Password';
 
 import {auth} from '../../firebase/firebaseConfig';
 import {sendPasswordResetEmail} from 'firebase/auth';
+import {useNavigation} from '@react-navigation/native';
 
 const ForgotPassword: React.FC = () => {
   const [email, setEmail] = useState('');
+  const navigation: any = useNavigation();
 
   async function handlerForgotPassword() {
     try {
@@ -36,6 +39,9 @@ const ForgotPassword: React.FC = () => {
         </InputLogin>
       </View>
       <ButtonLogin onpress={handlerForgotPassword}>Send</ButtonLogin>
+      <Password onpress={() => navigation.navigate('LoginPage')}>
+        Login
+      </Password>
     </View>
   );
 };
